@@ -1,5 +1,5 @@
 import {AnimalListModel} from "./index";
-import {AnimalInMemoryGateway} from "../../app/services/AnimalInMemoryGateway";
+import {AnimalInMemoryGateway} from "../spi/AnimalInMemoryGateway";
 import {data} from "../../app/services/data";
 
 describe('Model reactivity', () => {
