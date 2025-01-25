@@ -19,17 +19,17 @@ export class AppComponent implements OnInit{
   constructor(private animalListModel: AnimalListModel) {}
 
   public ngOnInit() {
-    this.animalListModel.displayAll().subscribe((data) => {
-      this.animalList.set(data);
+    this.animalListModel.displayAll().subscribe((_) => {
+     this.animalList.set(this.animalListModel.getState());
     }).unsubscribe();
   }
 
   public filterByDog(): void {
-    this.animalList.update((data: Animal[]) => this.animalListModel.filterAnimal("Dog"));
+    this.animalList.update((_) => this.animalListModel.filterAnimal("Dog"));
   }
 
   public filterByCat(): void {
-    this.animalList.update((data: Animal[]) => this.animalListModel.filterAnimal("Cat"));
+    this.animalList.update((_) => this.animalListModel.filterAnimal("Cat"));
   }
 
   public allAnimals(): void {
