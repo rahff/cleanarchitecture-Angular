@@ -1,4 +1,4 @@
-import {ComponentFixture, fakeAsync, flush, TestBed, tick} from '@angular/core/testing';
+import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {catList, data} from "./services/data";
 import {animalListModelDemoProvider} from "./app.config";
@@ -17,7 +17,8 @@ describe('AppComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance;
-  })
+  });
+
   afterEach(() => app.ngOnDestroy());
 
   it('should create the app', () => {
@@ -36,5 +37,4 @@ describe('AppComponent', () => {
     app.filterByCat();
     expect(app.animalList()).toEqual([...catList])
   }))
-
 });

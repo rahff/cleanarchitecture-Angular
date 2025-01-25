@@ -19,6 +19,7 @@ export class AnimalListModel {
     }
 
     private setState(data: Animal[]): void {
+        // Can use mapper here
         this.animalListState = data;
     }
 
@@ -27,6 +28,6 @@ export class AnimalListModel {
     }
 
     public filterAnimal(filter: string): Animal[] {
-        return [...this.animalListState.filter(animalFilter(filter))];
+        return animalFilter(filter)(this.animalListState);
     }
 }
