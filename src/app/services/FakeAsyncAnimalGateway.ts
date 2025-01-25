@@ -12,7 +12,6 @@ import {data} from "./data";
 })
 export class FakeAsyncAnimalGateway implements AnimalGateway {
 
-
     getAll(): Observable<Animal[]> {
         return new Observable((subscriber) => {
             setTimeout(() => subscriber.next(data), 200)

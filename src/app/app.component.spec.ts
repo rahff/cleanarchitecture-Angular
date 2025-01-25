@@ -34,7 +34,7 @@ describe('AppComponent', () => {
     app.ngOnInit();
     tick(200);
     app.filterByCat();
-    expect(app.animalList()).toEqual(catList)
+    expect(app.animalList()).toEqual([...catList])
   }))
 
 });
