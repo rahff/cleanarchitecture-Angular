@@ -13,7 +13,7 @@ export class AnimalListModel {
 
     constructor(private animalGateway: AnimalGateway) {}
 
-    public displayAll(): Observable<Animal[]> {
+    public getAll(): Observable<Animal[]> {
         return this.animalGateway.getAll()
             .pipe(first(), tap(this.setState.bind(this)));
     }
@@ -27,6 +27,6 @@ export class AnimalListModel {
     }
 
     public filterAnimal(filter: string): Animal[] {
-        return [...this.animalListState.filter(animalFilter(filter))]
+        return [...this.animalListState.filter(animalFilter(filter))];
     }
 }

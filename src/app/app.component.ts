@@ -1,7 +1,8 @@
-import {Component, effect, OnInit, signal} from '@angular/core';
+import {Component, effect, OnDestroy, OnInit, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 import {Animal, AnimalListModel} from "../core/model";
+import {Subscription} from "rxjs";
 
 
 
@@ -12,16 +13,16 @@ import {Animal, AnimalListModel} from "../core/model";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy {
   public title = 'clean-architecture';
   public animalList = signal(this.animalListModel.getState());
-
+  private  subscription: Subscription = new Subscription()
   constructor(private animalListModel: AnimalListModel) {}
 
   public ngOnInit() {
-    this.animalListModel.displayAll().subscribe((_) => {
+    this.subscription = this.animalListModel.getAll().subscribe((_) => {
      this.animalList.set(this.animalListModel.getState());
-    }).unsubscribe();
+    })
   }
 
   public filterByDog(): void {
@@ -34,6 +35,10 @@ export class AppComponent implements OnInit{
 
   public allAnimals(): void {
     this.animalList.update((data: Animal[]) => this.animalListModel.getState());
+  }
+
+  public ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
 
