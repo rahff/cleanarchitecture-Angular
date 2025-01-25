@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
   public ngOnInit() {
     this.animalListModel.displayAll().subscribe((data) => {
       this.animalList.set(data)
-    })
+    }).unsubscribe()
   }
 
   public filterByDog(): void {
