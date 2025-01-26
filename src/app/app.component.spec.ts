@@ -5,8 +5,8 @@ import {animalListModelDemoProvider} from "./app.config";
 
 
 describe('AppComponent', () => {
-  let app: AppComponent
-  let fixture: ComponentFixture<AppComponent>
+  let app: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
@@ -35,6 +35,8 @@ describe('AppComponent', () => {
     app.ngOnInit();
     tick(200);
     app.filterByCat();
-    expect(app.animalList()).toEqual([...catList])
+    expect(app.animalList()).toEqual([...catList]);
+    app.allAnimals();
+    expect(app.animalList()).toEqual([...data])
   }))
 });

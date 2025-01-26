@@ -16,13 +16,16 @@ import {Subscription} from "rxjs";
 export class AppComponent implements OnInit, OnDestroy {
   public title = 'clean-architecture';
   public animalList = signal(this.animalListModel.getState());
-  private  subscription: Subscription = new Subscription()
+  private  subscription: Subscription = new Subscription();
+
   constructor(private animalListModel: AnimalListModel) {}
 
   public ngOnInit() {
     this.subscription = this.animalListModel.getAll().subscribe((_) => {
      this.animalList.set(this.animalListModel.getState());
     })
+    // Note that Observable is completed since we use first() rxjs operator, we get the subscription and unsubscribe
+    // in onDestroy hook for ensure that no leak occurs
   }
 
   public filterByDog(): void {
